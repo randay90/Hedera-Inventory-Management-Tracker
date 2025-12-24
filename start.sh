@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Start the Hedera Hackathon Project Backend
+# Start the Hedera Davis Automation Project Backend
 
-echo "🚀 Starting Hedera Hackathon Project Backend..."
+echo "🚀 Starting Hedera Davis Automation Project Backend..."
 echo ""
 
 # Get the absolute path of the script's directory (project root)

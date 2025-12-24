@@ -59,20 +59,61 @@ Simply run:
 
 You should see output like:
 ```
-🚀 Starting Hedera Hackathon Project Backend...
+🚀 Starting Hedera Hash Tracker Backend...
 INFO:     Uvicorn running on http://0.0.0.0:8000
 INFO:     Application startup complete.
 ```
 
-### Step 3: Access the API
+### Step 3: Open the Frontend
 
-Once the backend is running, open your browser:
+Open your browser and navigate to:
 
-- **API Endpoint**: http://localhost:8000
-- **Interactive API Documentation (Swagger)**: http://localhost:8000/docs
-- **Alternative API Docs (ReDoc)**: http://localhost:8000/redoc
+```
+file:///Users/randay90/Documents/Hedera\ Hackathon\ Project/index.html
+```
+
+Or simply drag `index.html` into your browser.
+
+### Step 4: Start Using the App
+
+Once the frontend loads:
+
+- ✅ Create inventory items with name, quantity, and price
+- ✅ View all items in real-time
+- ✅ Create transactions (Sales, Purchases, Adjustments, Returns)
+- ✅ Track all transactions with automatic timestamps
+- ✅ Delete items and transactions as needed
 
 **That's it! Your project is running. 🎉**
+
+---
+
+## Frontend Features
+
+### 🎨 Modern Design
+- Black, white, and pink color scheme
+- Smooth animations and transitions
+- Fully responsive (mobile, tablet, desktop)
+- Real-time API status indicator
+
+### 📦 Inventory Management
+- **View Items**: Display all inventory items in an elegant card layout
+- **Create Items**: Add new items with name, quantity, and price
+- **Delete Items**: Remove items from inventory
+- **Live Updates**: Data refreshes every 5 seconds
+
+### 💳 Transaction Tracking
+- **View Transactions**: See all transactions in a detailed table
+- **Create Transactions**: Record sales, purchases, adjustments, and returns
+- **Delete Transactions**: Remove transaction records
+- **Type Badges**: Color-coded transaction types for easy identification
+
+### ✨ User Experience
+- Toast notifications for success/error feedback
+- Form validation and error handling
+- Responsive grid layout for items
+- Sortable transaction table
+- Auto-connecting API status monitor
 
 ---
 
@@ -168,20 +209,71 @@ python3 main.py
 
 ## Running the Application
 
-### Option 1: Backend API Only (Recommended)
+### Full Stack (Backend + Frontend)
 
-This is the easiest way to get started:
-
+**Terminal 1 - Start the Backend:**
 ```shell
-cd inventory-backend
-python3 main.py
+./start.sh
 ```
 
-The API will be available at `http://localhost:8000`
+**Then - Open the Frontend:**
+Open `index.html` in your browser:
+```
+file:///path/to/Hedera\ Hackathon\ Project/index.html
+```
 
-Test the endpoints using the Swagger UI at `http://localhost:8000/docs`
+### Backend Only (API Development)
 
-### Option 2: Smart Contracts (Advanced)
+```shell
+./start.sh
+```
+
+Access the API documentation at: http://localhost:8000/docs
+
+### Frontend Only (UI Development)
+
+Open `index.html` in your browser (requires backend to be running)
+
+## Frontend File Structure
+
+```
+├── index.html      # Main HTML structure
+├── styles.css      # Modern dark theme with pink accents
+└── script.js       # API integration and interactivity
+```
+
+## Frontend Architecture
+
+### Technologies Used
+- **HTML5** - Semantic markup
+- **CSS3** - Custom animations and gradients
+- **Vanilla JavaScript** - No dependencies, lightweight
+
+### Key Features
+
+**Responsive Design**
+- Mobile-first approach
+- Adapts to all screen sizes (320px - 4K)
+- Touch-friendly buttons and inputs
+
+**Real-time Updates**
+- Auto-refresh data every 5 seconds
+- Live API connection status
+- Toast notifications for user feedback
+
+**Modern Animations**
+- Smooth page transitions
+- Hover effects on cards and buttons
+- Loading states and transitions
+- Shimmer effects on interaction
+
+**API Integration**
+- Fully integrated with FastAPI backend
+- Error handling and validation
+- CORS-enabled for local development
+- Automatic retry on connection loss
+
+---
 
 #### Test the Smart Contracts
 
