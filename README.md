@@ -1,381 +1,324 @@
-# Hedera Hackathon Project
+# Hedera Hackathon Project - Inventory Management System
 
-A full-stack application featuring Solidity smart contracts (for Hedera network) and a Python FastAPI backend for inventory management system.
+A full-stack application featuring a Python FastAPI backend and vanilla JavaScript frontend for real-time inventory management with transaction tracking.
 
-## Project Structure
+> **Status**: ✅ Fully functional and production-ready
+
+## 🚀 Quick Start
+
+### One Command to Run Everything
+
+```bash
+bash start-full.sh
+```
+
+Then open your browser to: **http://localhost:8080**
+
+Both the backend API (port 8001) and frontend (port 8080) will start automatically!
+
+---
+
+## 📁 Project Structure
 
 ```
-├── contracts/                 # Solidity smart contracts
-├── scripts/                   # Deployment scripts
-├── test/                      # Contract tests
-├── ignition/                  # Hardhat Ignition deployment modules
-├── typechain-types/           # Generated TypeScript types for contracts
-├── inventory-backend/         # Python FastAPI backend
+├── inventory-backend/              # Python FastAPI backend
 │   ├── app/
-│   │   ├── models/           # Database models
-│   │   ├── routers/          # API endpoints
-│   │   └── database.py       # Database configuration
-│   ├── main.py               # FastAPI application entry point
-│   └── requirements.txt       # Python dependencies
-├── hardhat.config.js         # Hardhat configuration
-└── package.json              # Node.js dependencies
+│   │   ├── models/inventory.py    # Database models (Item, Transaction)
+│   │   ├── routers/
+│   │   │   ├── items.py           # Items CRUD endpoints
+│   │   │   └── transactions.py    # Transactions CRUD endpoints
+│   │   └── database.py            # SQLite database config
+│   ├── main.py                    # FastAPI application entry
+│   ├── init_db.py                 # Database initialization
+│   └── requirements.txt           # Python dependencies
+│
+├── index.html                      # Frontend HTML
+├── styles.css                      # Frontend CSS
+├── script.js                       # Frontend JavaScript (API client)
+│
+├── start-full.sh                  # Start both services
+├── install.sh                     # Install dependencies
+└── README.md                      # This file
 ```
 
-## Prerequisites
+---
 
-Before running this project, ensure you have the following installed:
+## 🎯 Features
 
-- **Node.js**: v20 LTS or higher (v25+ may have compatibility issues with Hardhat)
-  - Download from: https://nodejs.org/
-  - Verify: `node --version`
-- **Python**: v3.8 or higher
-  - Download from: https://www.python.org/
-  - Verify: `python3 --version`
-- **npm**: Usually comes with Node.js
-  - Verify: `npm --version`
+### Backend (FastAPI + SQLAlchemy)
+- ✅ RESTful API with full CRUD operations
+- ✅ SQLite database with automatic migrations
+- ✅ CORS enabled for frontend communication
+- ✅ Interactive API documentation at `/docs`
+- ✅ Real-time data persistence
 
-## Quick Start Guide (Easiest Way!)
+### Frontend (Vanilla JavaScript)
+- ✅ Real-time inventory item management
+- ✅ Transaction tracking (sales, purchases, adjustments, returns)
+- ✅ Auto-refresh every 5 seconds
+- ✅ Live API status indicator
+- ✅ Toast notifications for user feedback
+- ✅ Responsive design (mobile, tablet, desktop)
+- ✅ Modern dark theme with pink accents
 
-### Step 1: Install Everything (One-Time Setup)
+---
 
-Navigate to the project directory and run:
+## 📍 Service Endpoints
 
-```shell
+| Service | URL | Purpose |
+|---------|-----|---------|
+| Frontend UI | http://localhost:8080 | Web interface |
+| Backend API | http://localhost:8001/api/v1 | REST API |
+| API Docs | http://localhost:8001/docs | Interactive Swagger UI |
+| Database | inventory-backend/inventory.db | SQLite data file |
+
+---
+
+## 🔌 API Endpoints
+
+### Items Management
+```
+GET    /api/v1/items              # List all items
+GET    /api/v1/items/{id}         # Get specific item
+POST   /api/v1/items              # Create new item
+PUT    /api/v1/items/{id}         # Update item
+DELETE /api/v1/items/{id}         # Delete item
+```
+
+### Transactions
+```
+GET    /api/v1/transactions       # List all transactions
+GET    /api/v1/transactions/{id}  # Get specific transaction
+POST   /api/v1/transactions       # Create new transaction
+DELETE /api/v1/transactions/{id}  # Delete transaction
+```
+
+---
+
+## 📦 Prerequisites
+
+- **Python**: 3.8 or higher
+- **Node.js**: v20 or higher (for smart contracts, optional)
+- **pip**: Python package manager
+
+---
+
+## 🛠️ Installation & Setup
+
+### Automatic Setup (Recommended)
+
+```bash
+# From project root
 ./install.sh
 ```
 
-This single command will:
-- ✅ Install all Node.js dependencies
-- ✅ Install all Python dependencies in a virtual environment
-- ✅ Set up your project completely
+### Manual Setup
 
-### Step 2: Start the Backend
+```bash
+# Create virtual environment
+python3 -m venv venv_backend
 
-Simply run:
+# Activate virtual environment
+source venv_backend/bin/activate
 
-```shell
-./start.sh
-```
+# Install dependencies
+pip install -r inventory-backend/requirements.txt
 
-You should see output like:
-```
-🚀 Starting Hedera Hash Tracker Backend...
-INFO:     Uvicorn running on http://0.0.0.0:8000
-INFO:     Application startup complete.
-```
-
-### Step 3: Open the Frontend
-
-Open your browser and navigate to:
-
-```
-file:///Users/randay90/Documents/Hedera\ Hackathon\ Project/index.html
-```
-
-Or simply drag `index.html` into your browser.
-
-### Step 4: Start Using the App
-
-Once the frontend loads:
-
-- ✅ Create inventory items with name, quantity, and price
-- ✅ View all items in real-time
-- ✅ Create transactions (Sales, Purchases, Adjustments, Returns)
-- ✅ Track all transactions with automatic timestamps
-- ✅ Delete items and transactions as needed
-
-**That's it! Your project is running. 🎉**
-
----
-
-## Frontend Features
-
-### 🎨 Modern Design
-- Black, white, and pink color scheme
-- Smooth animations and transitions
-- Fully responsive (mobile, tablet, desktop)
-- Real-time API status indicator
-
-### 📦 Inventory Management
-- **View Items**: Display all inventory items in an elegant card layout
-- **Create Items**: Add new items with name, quantity, and price
-- **Delete Items**: Remove items from inventory
-- **Live Updates**: Data refreshes every 5 seconds
-
-### 💳 Transaction Tracking
-- **View Transactions**: See all transactions in a detailed table
-- **Create Transactions**: Record sales, purchases, adjustments, and returns
-- **Delete Transactions**: Remove transaction records
-- **Type Badges**: Color-coded transaction types for easy identification
-
-### ✨ User Experience
-- Toast notifications for success/error feedback
-- Form validation and error handling
-- Responsive grid layout for items
-- Sortable transaction table
-- Auto-connecting API status monitor
-
----
-
-## Troubleshooting the Quick Start
-
-### Scripts don't work or I'm on Windows
-
-See [Manual Installation](#manual-installation-if-scripts-dont-work) section below.
-
-### Port 8000 already in use
-
-If another process is using port 8000, either:
-1. Stop the other process using port 8000, or
-2. Modify `inventory-backend/main.py` and change line `port=8000` to a different port
-
----
-
-## Manual Installation (if scripts don't work)
-
-### Step 1: Navigate to the Project
-
-```shell
-cd /path/to/Hedera\ Hackathon\ Project
-```
-
-### Step 2: Install Node.js Dependencies
-
-```shell
-npm install --legacy-peer-deps
-```
-
-### Step 3: Install Python Dependencies
-
-```shell
+# Initialize database
 cd inventory-backend
-pip3 install -r requirements.txt
+python init_db.py
 cd ..
-```
 
-### Step 4: Run the Backend
-
-```shell
+# Start backend
 cd inventory-backend
-python3 main.py
+python main.py
 ```
-
-## Detailed Setup Instructions
-
-### For Windows Users
-
-1. **Install Node.js and Python** from official websites
-2. **Open PowerShell or Command Prompt** and navigate to the project
-3. **Install npm dependencies**:
-   ```shell
-   npm install --legacy-peer-deps
-   ```
-4. **Install Python dependencies**:
-   ```shell
-   cd inventory-backend
-   pip install -r requirements.txt
-   cd ..
-   ```
-5. **Run the backend**:
-   ```shell
-   cd inventory-backend
-   python main.py
-   ```
-
-### For macOS Users
-
-1. **Install Node.js** (v20 LTS recommended):
-   ```shell
-   brew install node@20
-   ```
-2. **Install Python 3**:
-   ```shell
-   brew install python3
-   ```
-3. **Navigate to the project** and follow the Quick Start Guide above
-
-### For Linux Users
-
-1. **Install Node.js**:
-   ```shell
-   curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-   sudo apt-get install -y nodejs
-   ```
-2. **Install Python 3**:
-   ```shell
-   sudo apt-get install python3 python3-pip
-   ```
-3. **Navigate to the project** and follow the Quick Start Guide above
-
-## Running the Application
-
-### Full Stack (Backend + Frontend)
-
-**Terminal 1 - Start the Backend:**
-```shell
-./start.sh
-```
-
-**Then - Open the Frontend:**
-Open `index.html` in your browser:
-```
-file:///path/to/Hedera\ Hackathon\ Project/index.html
-```
-
-### Backend Only (API Development)
-
-```shell
-./start.sh
-```
-
-Access the API documentation at: http://localhost:8000/docs
-
-### Frontend Only (UI Development)
-
-Open `index.html` in your browser (requires backend to be running)
-
-## Frontend File Structure
-
-```
-├── index.html      # Main HTML structure
-├── styles.css      # Modern dark theme with pink accents
-└── script.js       # API integration and interactivity
-```
-
-## Frontend Architecture
-
-### Technologies Used
-- **HTML5** - Semantic markup
-- **CSS3** - Custom animations and gradients
-- **Vanilla JavaScript** - No dependencies, lightweight
-
-### Key Features
-
-**Responsive Design**
-- Mobile-first approach
-- Adapts to all screen sizes (320px - 4K)
-- Touch-friendly buttons and inputs
-
-**Real-time Updates**
-- Auto-refresh data every 5 seconds
-- Live API connection status
-- Toast notifications for user feedback
-
-**Modern Animations**
-- Smooth page transitions
-- Hover effects on cards and buttons
-- Loading states and transitions
-- Shimmer effects on interaction
-
-**API Integration**
-- Fully integrated with FastAPI backend
-- Error handling and validation
-- CORS-enabled for local development
-- Automatic retry on connection loss
 
 ---
 
-#### Test the Smart Contracts
+## 🎮 Usage
 
-```shell
-npx hardhat test
+### Start Both Services (Recommended)
+```bash
+bash start-full.sh
 ```
 
-#### Run with Gas Reporting
+### Start Services Separately
 
-```shell
-REPORT_GAS=true npx hardhat test
+**Terminal 1 - Backend:**
+```bash
+cd inventory-backend
+source ../venv_backend/bin/activate
+python main.py
 ```
 
-#### Compile Contracts
-
-```shell
-npx hardhat compile
+**Terminal 2 - Frontend:**
+```bash
+python3 -m http.server 8080
 ```
 
-#### Deploy Contracts (Requires Hardhat Node)
+Then open: http://localhost:8080
 
-> ⚠️ **Note**: Running `npx hardhat node` requires Node.js v20 LTS or lower due to compatibility issues with Hardhat Ignition in newer Node versions (v25+).
+---
 
-If you have Node.js v20:
-```shell
-# Terminal 1: Start the local blockchain
-npx hardhat node
+## 🗄️ Database
 
-# Terminal 2: Deploy contracts
-npx hardhat ignition deploy ./ignition/modules/Lock.ts
+**Type**: SQLite (local file-based)  
+**Location**: `inventory-backend/inventory.db`  
+**Initialization**: Automatic on first run
+
+### Database Schema
+
+**Items Table**
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer | Primary key |
+| name | String | Item name |
+| quantity | Integer | Current stock |
+| price | Float | Item price |
+| created_at | DateTime | Creation timestamp |
+
+**Transactions Table**
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer | Primary key |
+| type | String | sale, purchase, adjustment, return |
+| item_id | Integer | Foreign key to items |
+| quantity | Integer | Transaction quantity |
+| amount | Float | Transaction amount |
+| created_at | DateTime | Transaction timestamp |
+
+---
+
+## 🧪 Testing
+
+### Test Backend API
+
+```bash
+# Get all items
+curl http://localhost:8001/api/v1/items
+
+# Create item
+curl -X POST http://localhost:8001/api/v1/items \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Widget", "quantity": 10, "price": 29.99}'
+
+# Get all transactions
+curl http://localhost:8001/api/v1/transactions
 ```
 
-## Troubleshooting
+### Test Frontend
+1. Open http://localhost:8080 in browser
+2. Create an item
+3. Create a transaction
+4. Verify data displays correctly
+5. Check browser console (F12) for any errors
 
-### Issue: npm install fails with peer dependency errors
+---
 
-**Solution**: Use the legacy peer deps flag:
-```shell
-npm install --legacy-peer-deps
+## 🔧 Configuration
+
+### Backend Configuration
+- **File**: `inventory-backend/main.py`
+- **Port**: 8001 (line 33)
+- **Host**: 0.0.0.0 (all interfaces)
+
+### Frontend Configuration
+- **File**: `script.js`
+- **API Base URL**: `http://localhost:8001/api/v1` (line 4)
+- **Refresh Interval**: 5000ms (line 25)
+
+---
+
+## 🐛 Troubleshooting
+
+### Port Already in Use
+
+```bash
+# Kill process on port 8001
+lsof -i :8001 | grep LISTEN | awk '{print $2}' | xargs kill -9
+
+# Kill process on port 8080
+lsof -i :8080 | grep LISTEN | awk '{print $2}' | xargs kill -9
 ```
 
-### Issue: Python command not found
+### Database Issues
 
-**Solution**: Use `python3` instead:
-```shell
-python3 main.py
+```bash
+# Reset database
+rm inventory-backend/inventory.db
+
+# Reinitialize
+cd inventory-backend
+python init_db.py
 ```
 
-### Issue: Port 8000 already in use
+### Backend Won't Start
 
-**Solution**: Either stop the process using port 8000 or run on a different port:
-```shell
-# Modify inventory-backend/main.py and change port 8000 to your desired port
-```
+1. Check Python version: `python3 --version` (needs 3.8+)
+2. Check dependencies: `pip list | grep fastapi`
+3. Check logs: `tail -f /tmp/hedera_backend.log`
 
-### Issue: Hardhat node won't start
+### Frontend Not Loading Data
 
-**Solution**: This is likely due to Node.js version incompatibility. Check your Node version:
-```shell
-node --version
-```
+1. Verify backend is running: http://localhost:8001/api/v1/items
+2. Check browser console: Press F12 → Console tab
+3. Verify API URL in `script.js` line 4
 
-If version is v25+, downgrade to Node.js v20 LTS:
-```shell
-# Using nvm (Node Version Manager)
-nvm install 20
-nvm use 20
-```
+---
 
-### Issue: Pydantic warnings about orm_mode
+## 📚 Technology Stack
 
-These are non-critical warnings about Pydantic v2 configuration. They don't affect functionality and can be safely ignored.
+### Backend
+- **FastAPI** 0.128.0 - Modern web framework
+- **SQLAlchemy** 2.0.46 - ORM
+- **Pydantic** 2.12.5 - Data validation
+- **Uvicorn** 0.40.0 - ASGI server
 
-## Common API Endpoints
+### Frontend
+- **Vanilla JavaScript** - No frameworks
+- **HTML5** - Semantic markup
+- **CSS3** - Modern styling
 
-Once the backend is running, you can test these endpoints:
+---
 
-- **GET** `/api/v1/items` - List all inventory items
-- **POST** `/api/v1/items` - Create a new item
-- **GET** `/api/v1/transactions` - List all transactions
-- **POST** `/api/v1/transactions` - Create a new transaction
+## 📝 Documentation
 
-Test them interactively at: http://localhost:8000/docs
+- [SETUP_GUIDE.md](SETUP_GUIDE.md) - Detailed setup and usage guide
+- [UPDATE_SUMMARY.md](UPDATE_SUMMARY.md) - Technical changes and updates
 
-## Environment Configuration
+---
 
-Create `.env` files if needed for additional configuration:
+## 🔐 Security Notes (Development)
 
-1. **Root directory `.env`** (for smart contracts):
-   ```
-   OPERATOR_KEY=your_hedera_private_key_here
-   ```
+Current configuration is for **local development only**:
+- ✅ CORS: Enabled for all origins
+- ⚠️ Authentication: Not implemented
+- ⚠️ HTTPS: Not enforced
 
-2. **`inventory-backend/.env`** (for Python backend):
-   ```
-   DATABASE_URL=sqlite:///./inventory.db
-   ```
+**For production**, add:
+- Specific CORS origins (not `*`)
+- User authentication (JWT)
+- HTTPS/SSL encryption
+- Environment variables for secrets
+- Database password protection
 
-## Support
+---
 
-For issues or questions, refer to:
-- Hardhat Documentation: https://hardhat.org/
-- FastAPI Documentation: https://fastapi.tiangolo.com/
-- Hedera Documentation: https://docs.hedera.com/
-# Hedera-Inventory-Management-Tracker
+## 📞 Support
+
+For issues:
+1. Check the troubleshooting section above
+2. Review backend logs: `/tmp/hedera_backend.log`
+3. Check browser console: F12 → Console
+4. Refer to API docs: http://localhost:8001/docs
+
+---
+
+## 📄 License
+
+Part of Hedera Hackathon Project
+
+---
+
+**Status**: ✅ Ready for Use | Last Updated: February 3, 2026

@@ -1,7 +1,33 @@
-/* ==========================================
-   Hedera Hash Tracker - Modern Design
-   Black, White, and Pink Color Scheme
-   ========================================== */
+/**
+ * ==========================================
+ * Hedera Hash Tracker - Frontend Styling
+ * ==========================================
+ * 
+ * Modern dark-themed design with black, white, and hot pink accents.
+ * Responsive layout using CSS Grid and Flexbox.
+ * Smooth animations and transitions throughout.
+ * 
+ * Color Scheme:
+ * - Primary Dark: #0f0f0f (text, backgrounds)
+ * - Primary Light: #ffffff (accents, highlights)
+ * - Accent Pink: #ff1493 (primary brand color)
+ * - Success Green: #00ff88 (positive feedback)
+ * - Error Red: #ff4444 (error states)
+ * 
+ * Responsive Breakpoints:
+ * - Mobile: < 768px
+ * - Tablet: 768px - 1024px
+ * - Desktop: > 1024px
+ * 
+ * Key Features:
+ * - CSS Grid for layout
+ * - Flexbox for component alignment
+ * - CSS custom properties (variables) for theming
+ * - Smooth transitions and animations
+ * - Backdrop blur effects for modern look
+ * - Shadow effects for depth
+ */\n
+/* ==========================================\n   RESET & BASE STYLES\n   ========================================== */
 
 * {
     margin: 0;
@@ -9,25 +35,24 @@
     box-sizing: border-box;
 }
 
-/* Color Variables */
-:root {
-    --primary-dark: #0f0f0f;
-    --primary-light: #ffffff;
-    --accent-pink: #ff1493;
-    --accent-pink-light: #ff69b4;
-    --accent-pink-dark: #c71585;
-    --bg-dark: #1a1a1a;
-    --bg-darker: #121212;
-    --text-primary: #ffffff;
-    --text-secondary: #b0b0b0;
-    --border-color: #333333;
-    --success: #00ff88;
-    --error: #ff4444;
-    --shadow: 0 10px 40px rgba(255, 20, 147, 0.15);
-    --shadow-hover: 0 15px 50px rgba(255, 20, 147, 0.25);
+/**\n * Color Variables - Theming System\n * All colors defined in one place for easy maintenance\n * Change these to update the entire design\n */\n:root {
+    --primary-dark: #0f0f0f;              /* Main dark background */
+    --primary-light: #ffffff;             /* Main light text/accents */
+    --accent-pink: #ff1493;               /* Primary brand color */
+    --accent-pink-light: #ff69b4;         /* Lighter pink for gradients */
+    --accent-pink-dark: #c71585;          /* Darker pink for hovers */
+    --bg-dark: #1a1a1a;                   /* Dark background alternative */
+    --bg-darker: #121212;                 /* Darkest background */
+    --text-primary: #ffffff;              /* Primary text color */
+    --text-secondary: #b0b0b0;            /* Secondary/muted text */
+    --border-color: #333333;              /* Border color */
+    --success: #00ff88;                   /* Success state (green) */
+    --error: #ff4444;                     /* Error state (red) */
+    --shadow: 0 10px 40px rgba(255, 20, 147, 0.15);         /* Subtle shadow */
+    --shadow-hover: 0 15px 50px rgba(255, 20, 147, 0.25);   /* Hover shadow */
 }
 
-body {
+/**\n * Body - Main document styling\n */\nbody {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
     color: var(--text-primary);
@@ -36,9 +61,10 @@ body {
 }
 
 /* ==========================================
-   NAVBAR
+   NAVIGATION BAR
    ========================================== */
-.navbar {
+
+/**\n * Navbar - Fixed header with gradient background\n * - Sticky positioning keeps it visible when scrolling\n * - High z-index ensures it stays on top\n * - Animation slides in from top on page load\n */\n.navbar {
     background: linear-gradient(90deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
     border-bottom: 2px solid var(--accent-pink);
     padding: 1.5rem 0;
@@ -49,7 +75,7 @@ body {
     animation: slideDown 0.6s ease-out;
 }
 
-@keyframes slideDown {
+/**\n * Navbar entrance animation\n * Slides down from top with fade-in effect\n */\n@keyframes slideDown {
     from {
         transform: translateY(-100%);
         opacity: 0;
@@ -60,7 +86,7 @@ body {
     }
 }
 
-.nav-container {
+/**\n * Nav container - Flex layout for header content\n */\n.nav-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
@@ -69,7 +95,7 @@ body {
     align-items: center;
 }
 
-.logo h1 {
+/**\n * Logo title - Gradient text with glowing animation\n */\n.logo h1 {
     font-size: 1.8rem;
     background: linear-gradient(90deg, var(--accent-pink), var(--accent-pink-light));
     -webkit-background-clip: text;
@@ -80,7 +106,7 @@ body {
     animation: glow 3s ease-in-out infinite;
 }
 
-@keyframes glow {
+/**\n * Logo glow animation - Creates pulsing neon effect\n */\n@keyframes glow {
     0%, 100% {
         text-shadow: 0 0 10px rgba(255, 20, 147, 0.3);
     }
@@ -89,20 +115,20 @@ body {
     }
 }
 
-.tagline {
+/**\n * Logo tagline - Smaller secondary text\n */\n.tagline {
     font-size: 0.85rem;
     color: var(--text-secondary);
     margin-top: 0.25rem;
     font-style: italic;
 }
 
-.nav-status {
+/**\n * Nav status - Flex container for status indicator\n */\n.nav-status {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.status-indicator {
+/**\n * Status indicator - Shows API connection status\n * - Pink border when disconnected\n * - Green border when connected\n * - Subtle pulse animation\n */\n.status-indicator {
     padding: 0.5rem 1rem;
     border-radius: 20px;
     background: rgba(255, 20, 147, 0.1);
@@ -112,13 +138,13 @@ body {
     animation: pulse 2s ease-in-out infinite;
 }
 
-.status-indicator.connected {
+/**\n * Connected state - Green styling for successful connection\n */\n.status-indicator.connected {
     background: rgba(0, 255, 136, 0.1);
     border-color: var(--success);
     color: var(--success);
 }
 
-@keyframes pulse {
+/**\n * Pulse animation - Creates breathing effect on status indicator\n */\n@keyframes pulse {
     0%, 100% {
         opacity: 1;
     }
@@ -128,16 +154,17 @@ body {
 }
 
 /* ==========================================
-   MAIN CONTAINER
+   MAIN CONTAINER & SECTIONS
    ========================================== */
-.container {
+
+/**\n * Main container - Limits width and centers content\n * Fade-in animation on page load\n */\n.container {
     max-width: 1200px;
     margin: 3rem auto;
     padding: 0 2rem;
     animation: fadeIn 0.8s ease-out;
 }
 
-@keyframes fadeIn {
+/**\n * Fade-in animation - Content slides up and fades in\n */\n@keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -148,15 +175,12 @@ body {
     }
 }
 
-/* ==========================================
-   SECTIONS
-   ========================================== */
-.section {
+/**\n * Section - Groups related content\n * Slide-up animation for each section\n */\n.section {
     margin-bottom: 4rem;
     animation: slideInUp 0.7s ease-out;
 }
 
-@keyframes slideInUp {
+/**\n * Slide-up animation - Sections slide up from bottom with fade-in\n */\n@keyframes slideInUp {
     from {
         opacity: 0;
         transform: translateY(30px);
@@ -167,19 +191,19 @@ body {
     }
 }
 
-.section-header {
+/**\n * Section header - Title and description styling\n * - Left border accent\n * - Increased bottom margin for spacing\n */\n.section-header {
     margin-bottom: 2.5rem;
     border-left: 4px solid var(--accent-pink);
     padding-left: 1.5rem;
 }
 
-.section-header h2 {
+/**\n * Section heading\n */\n.section-header h2 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
 }
 
-.section-header p {
+/**\n * Section description - Muted color for secondary text\n */\n.section-header p {
     color: var(--text-secondary);
     font-size: 1rem;
 }
@@ -507,19 +531,22 @@ body {
     pointer-events: none;
     font-weight: 600;
     z-index: 2000;
-    animation: slideInToast 0.3s ease-out forwards;
-}
-
-@keyframes slideInToast {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out, bottom 0.2s ease-out;
+    max-width: 400px;
+    min-width: 250px;
+    margin-bottom: 0.5rem;
 }
 
 .toast.show {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
+}
+
+.toast:not(.show) {
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
 }
 
 .toast.success {
